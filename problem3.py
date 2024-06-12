@@ -38,6 +38,7 @@ def evaluation(y, y_hat): #
 ### FILL IN  ############################################################
 def optimize_CF(phi, y):
     result = np.matmul(np.linalg.inv(np.matmul(np.transpose(phi), phi)), np.matmul(np.transpose(phi), y))
+    print("w_CF:",result)
     return result
 
 
@@ -159,4 +160,9 @@ if __name__ == "__main__":
     
     run_problem3_cde()
     
-    run_problem3_g(K=20) #you should change K to compare polynomial regression with different K's 
+    run_problem3_g(K=2) #you should change K to compare polynomial regression with different K's 
+    run_problem3_g(K=3) 
+    run_problem3_g(K=5) 
+    run_problem3_g(K=15) 
+    run_problem3_g(K=20) 
+    
