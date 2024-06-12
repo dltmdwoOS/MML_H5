@@ -41,14 +41,14 @@ def optimize_CF(phi, y):
     return result
 
 
-def compute_gradient(w, phi, y): 
+def compute_gradient(w, phi, y):
     '''
         Note. ignore the effect of sigma (of the noise) as this will be capture in the step-size
     '''
     wT = np.transpose(w)
     phiT = np.transpose(phi)
     yT = np.transpose(y)
-    grad = np.matmul(wT, np.matmul(phiT, phi)) - np.matmul(yT, phi)
+    grad = np.matmul(np.transpose(phi), (f_predict(w, phi) - y))
     return 1/len(phi) * grad
     
 
@@ -63,7 +63,7 @@ def optimize_GD(phi, y, step_size = 1e-4, iteration = 20000):
         grad = compute_gradient(w, phi, y)
         w    = w - step_size * grad
 
-        error[itr] = evaluation(y, np.matmul(phi, np.transpose(w)))
+        error[itr] = evaluation(y, f_predict(w, phi))
         
         itr += 1        
         
